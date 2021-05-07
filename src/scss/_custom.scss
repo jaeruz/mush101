@@ -1,0 +1,42 @@
+// Here you can add other styles
+// input[type="range"]::-webkit-slider-thumb {
+//   -webkit-appearance: none;
+
+//   background: #3399ff;
+//   cursor: pointer;
+// }
+@import url("https://fonts.googleapis.com/css2?family=Quantico&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+
+.body-ui {
+  font-family: "Quantico", sans-serif;
+  // font-family: "Electrolize", sans-serif;
+  // font-family: "Poppins", sans-serif;
+  // font-family: "Krona One", sans-serif;
+  // font-family: "Teko", sans-serif;
+  // font-family: "Comfortaa", cursive;
+  // font-family: "Prompt", sans-serif;
+}
+
+.no-copy {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #321fdb !important;
+}
+
+.custom-range {
+  padding: 0 !important;
+  border-style: none;
+}
