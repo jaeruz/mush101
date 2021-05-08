@@ -13,6 +13,7 @@ import {
   CModalBody,
   CModalFooter,
   CInput,
+  CCardFooter,
 } from "@coreui/react";
 import React, { useState, useEffect } from "react";
 
@@ -122,15 +123,23 @@ function ML() {
                   <span>Target Quality</span>
                   {toggleCycle ? (
                     <CSelect custom id="duration" disabled>
-                      <option value="1">Small cap, Long stipe</option>
-                      <option value="2">Thin brittle cap, Thick stipe</option>
-                      <option value="3">Strong cap, Strong stipe</option>
+                      <option value="1">Class A: Small cap, Long stipe</option>
+                      <option value="2">
+                        Class B: Thin brittle cap, Thick stipe
+                      </option>
+                      <option value="3">
+                        Class C: Strong cap, Strong stipe
+                      </option>
                     </CSelect>
                   ) : (
                     <CSelect custom id="duration">
-                      <option value="1">Small cap, Long stipe</option>
-                      <option value="2">Thin brittle cap, Thick stipe</option>
-                      <option value="3">Strong cap, Strong stipe</option>
+                      <option value="1">Class A: Small cap, Long stipe</option>
+                      <option value="2">
+                        Class B: Thin brittle cap, Thick stipe
+                      </option>
+                      <option value="3">
+                        Class C: Strong cap, Strong stipe
+                      </option>
                     </CSelect>
                   )}
                 </CFormGroup>
@@ -154,6 +163,13 @@ function ML() {
             </CRow>
           </CForm>
         </CCardBody>
+        <CCardFooter>
+          <p style={{ fontSize: "0.8em", color: "grey", textAlign: "center" }}>
+            This feature will use Artificial Intelligence (ML) to automatically
+            adjust the environment of the tub to achieve the desired fruiting
+            quality.
+          </p>
+        </CCardFooter>
       </CCard>
     </div>
   );
