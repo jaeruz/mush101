@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   CBadge,
   CCard,
@@ -8,79 +8,100 @@ import {
   CCol,
   CDataTable,
   CRow,
-  CPagination
-} from '@coreui/react'
+  CPagination,
+} from "@coreui/react";
 
-import usersData from './UsersData'
+import firebase from "../../api/fbConfig";
 
-const getBadge = status => {
+import usersData from "./UsersData";
+import { useSelector } from "react-redux";
+
+const getBadge = (status) => {
   switch (status) {
-    case 'Active': return 'success'
-    case 'Inactive': return 'secondary'
-    case 'Pending': return 'warning'
-    case 'Banned': return 'danger'
-    default: return 'primary'
+    case "Active":
+      return "success";
+    case "Inactive":
+      return "secondary";
+    case "Pending":
+      return "warning";
+    case "Banned":
+      return "danger";
+    default:
+      return "primary";
   }
-}
+};
 
 const Users = () => {
-  const history = useHistory()
-  const queryPage = useLocation().search.match(/page=([0-9]+)/, '')
-  const currentPage = Number(queryPage && queryPage[1] ? queryPage[1] : 1)
-  const [page, setPage] = useState(currentPage)
+  const history = useHistory();
+  const queryPage = useLocation().search.match(/page=([0-9]+)/, "");
+  const currentPage = Number(queryPage && queryPage[1] ? queryPage[1] : 1);
+  const [page, setPage] = useState(currentPage);
 
-  const pageChange = newPage => {
-    currentPage !== newPage && history.push(`/users?page=${newPage}`)
-  }
+  const authDetails = useSelector((state) => state.auth);
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    currentPage !== page && setPage(currentPage)
-  }, [currentPage, page])
+    const users = firebase.database().ref("users");
+    users.on("value", async (snapshot) => {
+      const tempList = snapshot.val().registered;
+      const temp = [];
+      Object.keys(tempList).map((key, index) => {
+        temp.push(tempList[key]);
+      });
+      setUserList(temp);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(userList);
+  }, [userList]);
+
+  const pageChange = (newPage) => {
+    currentPage !== newPage && history.push(`/users?page=${newPage}`);
+  };
+
+  useEffect(() => {
+    currentPage !== page && setPage(currentPage);
+  }, [currentPage, page]);
 
   return (
     <CRow>
-      <CCol xl={6}>
+      <CCol lg={1}></CCol>
+      <CCol xl={10}>
         <CCard>
           <CCardHeader>
             Users
             <small className="text-muted"> example</small>
           </CCardHeader>
           <CCardBody>
-          <CDataTable
-            items={usersData}
-            fields={[
-              { key: 'name', _classes: 'font-weight-bold' },
-              'registered', 'role', 'status'
-            ]}
-            hover
-            striped
-            itemsPerPage={5}
-            activePage={page}
-            clickableRows
-            onRowClick={(item) => history.push(`/users/${item.id}`)}
-            scopedSlots = {{
-              'status':
-                (item)=>(
-                  <td>
-                    <CBadge color={getBadge(item.status)}>
-                      {item.status}
-                    </CBadge>
-                  </td>
-                )
-            }}
-          />
-          <CPagination
-            activePage={page}
-            onActivePageChange={pageChange}
-            pages={5}
-            doubleArrows={false} 
-            align="center"
-          />
+            <CDataTable
+              items={userList.length ? userList : []}
+              fields={[
+                { key: "username", _classes: "font-weight-bold" },
+                "fname",
+                "lname",
+                "email",
+              ]}
+              hover
+              striped
+              itemsPerPage={5}
+              activePage={page}
+              clickableRows
+              onRowClick={(item) => history.push(`/users/${item.id}`)}
+            />
+            <CPagination
+              activePage={page}
+              onActivePageChange={pageChange}
+              pages={5}
+              doubleArrows={false}
+              align="center"
+            />
           </CCardBody>
         </CCard>
       </CCol>
+      <CCol lg={1}></CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

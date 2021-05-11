@@ -1,4 +1,5 @@
 import React from "react";
+import Notifications from "./views/pages/notifications/Notifications";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -66,7 +67,7 @@ const Controls = React.lazy(() => import("./Controls/Control"));
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
-  { path: "/dashboard", name: "Dashboard", component: Dashboard },
+  { path: "/dashboard", name: "Dashboard", component: Dashboard }, //dash
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },
   { path: "/theme/typography", name: "Typography", component: Typography },
@@ -109,21 +110,27 @@ const routes = [
   { path: "/icons/coreui-icons", name: "CoreUI Icons", component: CoreUIIcons },
   { path: "/icons/flags", name: "Flags", component: Flags },
   { path: "/icons/brands", name: "Brands", component: Brands },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    component: Alerts,
-    exact: true,
-  },
-  { path: "/notifications/alerts", name: "Alerts", component: Alerts },
-  { path: "/notifications/badges", name: "Badges", component: Badges },
-  { path: "/notifications/modals", name: "Modals", component: Modals },
-  { path: "/notifications/toaster", name: "Toaster", component: Toaster },
-  { path: "/widgets", name: "Widgets", component: Widgets },
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   component: Alerts,
+  //   exact: true,
+  // },
+  // { path: "/notifications/alerts", name: "Alerts", component: Alerts },
+  // { path: "/notifications/badges", name: "Badges", component: Badges },
+  // { path: "/notifications/modals", name: "Modals", component: Modals },
+  // { path: "/notifications/toaster", name: "Toaster", component: Toaster },
+  // { path: "/widgets", name: "Widgets", component: Widgets },
   { path: "/users", exact: true, name: "Users", component: Users },
   { path: "/users/:id", exact: true, name: "User Details", component: User },
 
   { path: "/controls", exact: true, name: "Controls", component: Controls },
+  {
+    path: "/notifications",
+    exact: true,
+    name: "Notifications",
+    component: Notifications,
+  },
 ];
 
 export default routes;

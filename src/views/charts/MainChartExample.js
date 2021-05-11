@@ -14,10 +14,10 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
     d: 0,
   });
   useEffect(() => {
-    console.log(labelsList);
+    // console.log(labelsList);
     if (labelsList && labelsList.length && sensorValuesList.length) {
     }
-    console.log(sensorValuesList);
+    // console.log(sensorValuesList);
     let temp = sensorValuesList
       .slice(labelsList.length - 18, labelsList.length)
       .map((i) => i.temp);

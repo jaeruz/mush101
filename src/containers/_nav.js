@@ -21,7 +21,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Mushroom Cycle",
-    to: "/theme/typography",
+    to: "/",
     icon: "cil-pencil",
   },
   {
@@ -31,11 +31,11 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Notifications",
-    route: "/buttons",
+    to: "/notifications",
     icon: "cil-cursor",
     badge: {
-      color: "info",
-      text: "NEW",
+      color: "danger",
+      text: 2,
     },
   },
   {

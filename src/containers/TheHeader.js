@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   CHeader,
@@ -14,23 +14,28 @@ import {
 import routes from "../routes";
 
 import { TheHeaderDropdown, TheHeaderDropdownNotif } from "./index";
+import { updateSidebar } from "src/Actions";
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const sidebarShow = useSelector((state) => state.changeState);
+  const authDetails = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    console.log(authDetails);
+  }, []);
   const toggleSidebar = () => {
     const val = [true, "responsive"].includes(sidebarShow)
       ? false
       : "responsive";
-    dispatch({ type: "set", sidebarShow: val });
+    dispatch(updateSidebar(val));
   };
 
   const toggleSidebarMobile = () => {
     const val = [false, "responsive"].includes(sidebarShow)
       ? true
       : "responsive";
-    dispatch({ type: "set", sidebarShow: val });
+    dispatch(updateSidebar(val));
   };
 
   return (

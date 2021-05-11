@@ -41,11 +41,11 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    console.log(sensorValuesList);
+    // console.log(sensorValuesList);
   }, [sensorValuesList]);
 
   useEffect(() => {
-    console.log(labelsList);
+    // console.log(labelsList);
   }, [labelsList]);
   return (
     <>
