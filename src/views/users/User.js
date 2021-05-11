@@ -41,7 +41,8 @@ const User = ({ match }) => {
         [
           "id",
           <span>
-            <CIcon className="text-muted" name="cui-icon-ban" /> Not found
+            <CIcon className="text-muted" name="cui-icon-ban" />
+            <h2>Not Found</h2>
           </span>,
         ],
       ];
@@ -55,20 +56,25 @@ const User = ({ match }) => {
           <CCardBody>
             <table className="table table-striped table-hover">
               <tbody>
-                {userDetails.map(([key, value], index) => {
-                  return (
-                    <>
-                      {key === "confirmPassword" || key == "password" ? null : (
-                        <tr key={index.toString()}>
-                          <td>{`${key}:`}</td>
-                          <td>
-                            <strong>{value}</strong>
-                          </td>
-                        </tr>
-                      )}
-                    </>
-                  );
-                })}
+                {userDetails && userDetails.length ? (
+                  userDetails.map(([key, value], index) => {
+                    return (
+                      <div>
+                        {key === "confirmPassword" ||
+                        key == "password" ? null : (
+                          <tr key={index.toString()}>
+                            <td>{`${key}:`}</td>
+                            <td>
+                              <strong>{value}</strong>
+                            </td>
+                          </tr>
+                        )}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>Loading..</p>
+                )}
               </tbody>
             </table>
           </CCardBody>

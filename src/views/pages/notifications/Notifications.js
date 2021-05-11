@@ -22,7 +22,7 @@ function Notifications() {
             <CCardHeader>Notifications</CCardHeader>
             <CCardBody>
               <CAlert color="primary">
-                This is a primary alert — check it out!
+                This is a updated alert — check it out!
               </CAlert>
               <CAlert color="secondary">
                 This is a secondary alert — check it out!
