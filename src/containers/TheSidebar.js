@@ -27,7 +27,7 @@ const TheSidebar = () => {
   return (
     <CSidebar show={show} onShowChange={(val) => dispatch(updateSidebar(val))}>
       <CSidebarBrand className="d-md-down-none" to="/">
-        <h4 className="c-sidebar-brand-full">KabuTech</h4>
+        <h4 className="c-sidebar-brand-full">KabuTech V2.1.1.2</h4>
         <h4 className="c-sidebar-brand-minimized">K</h4>
       </CSidebarBrand>
       <CSidebarNav>

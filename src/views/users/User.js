@@ -35,17 +35,7 @@ const User = ({ match }) => {
     console.log(specificUser);
   }, [specificUser]);
 
-  const userDetails = specificUser
-    ? Object.entries(specificUser)
-    : [
-        [
-          "id",
-          <span>
-            <CIcon className="text-muted" name="cui-icon-ban" />
-            <h2>Not Found</h2>
-          </span>,
-        ],
-      ];
+  // const userDetails = specificUser ? Object.entries(specificUser) : null;
 
   return (
     <CRow>
@@ -56,12 +46,12 @@ const User = ({ match }) => {
           <CCardBody>
             <table className="table table-striped table-hover">
               <tbody>
-                {userDetails && userDetails.length ? (
-                  userDetails.map(([key, value], index) => {
+                {specificUser ? (
+                  Object.entries(specificUser).map(([key, value], index) => {
                     return (
                       <div>
                         {key === "confirmPassword" ||
-                        key == "password" ? null : (
+                        key === "password" ? null : (
                           <tr key={index.toString()}>
                             <td>{`${key}:`}</td>
                             <td>
