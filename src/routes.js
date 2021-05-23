@@ -1,4 +1,5 @@
 import React from "react";
+// import LifeCycle from "./views/pages/about/LifeCycle";
 import Notifications from "./views/pages/notifications/Notifications";
 
 const Toaster = React.lazy(() =>
@@ -131,6 +132,12 @@ const routes = [
     name: "Notifications",
     component: Notifications,
   },
+  // {
+  //   path: "/about/lifecycle",
+  //   exact: true,
+  //   name: "Mushroom LifeCycle",
+  //   component: LifeCycle,
+  // },
 ];
 
 export default routes;

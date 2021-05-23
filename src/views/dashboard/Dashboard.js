@@ -49,7 +49,10 @@ const Dashboard = () => {
   }, [labelsList]);
   return (
     <>
-      <WidgetsDropdown />
+      <WidgetsDropdown
+        sensorValuesList={sensorValuesList}
+        labelsList={labelsList}
+      />
       <CCard>
         <CCardBody>
           <CRow>

@@ -15,10 +15,11 @@ import {
   CInput,
   CCardFooter,
 } from "@coreui/react";
+import firebase from "../api/fbConfig";
 import React, { useState, useEffect } from "react";
 
 function ML() {
-  const [toggleCycle, setToggleCycle] = useState(false);
+  const [toggleCycle, setToggleCycle] = useState(null);
   const [modal, setModal] = useState(false);
   const [stopWord, setStopWord] = useState(null);
   const [chosenWord, setChosenWord] = useState(null);
@@ -38,6 +39,10 @@ function ML() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleStartCycle = () => {
+    setToggleCycle(!toggleCycle);
   };
 
   const handleStopCycleLegit = () => {
@@ -61,9 +66,30 @@ function ML() {
       document.getElementById("stop-button-legit").disabled = false;
     }
   }, [stopWord]);
+
+  useEffect(() => {
+    if (toggleCycle != null) {
+      if (toggleCycle) {
+        const controlAutomated = firebase.database().ref("metaData/Controls");
+        controlAutomated.update({ automatedON: true });
+      } else {
+        const controlAutomated = firebase.database().ref("metaData/Controls");
+        controlAutomated.update({ automatedON: false });
+      }
+    }
+  }, [toggleCycle]);
+
   useEffect(() => {
     document.getElementById("stop-button-legit").disabled = true;
     setChosenWord(words[Math.floor(Math.random() * 11)]);
+
+    const automatedON = firebase
+      .database()
+      .ref("metaData/Controls/automatedON");
+    automatedON.on("value", async (snapshot) => {
+      console.log(snapshot.val());
+      setToggleCycle(snapshot.val());
+    });
   }, []);
   return (
     <div>
@@ -150,11 +176,7 @@ function ML() {
                   <CButton
                     block
                     color={toggleCycle ? "danger" : "success"}
-                    onClick={
-                      !toggleCycle
-                        ? () => setToggleCycle(!toggleCycle)
-                        : handleStopCycle
-                    }
+                    onClick={!toggleCycle ? handleStartCycle : handleStopCycle}
                   >
                     {toggleCycle ? "Stop Cycle" : "Start Cycle"}
                   </CButton>

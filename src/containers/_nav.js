@@ -33,10 +33,10 @@ const _nav = [
     name: "Notifications",
     to: "/notifications",
     icon: "cil-cursor",
-    badge: {
-      color: "danger",
-      text: 2,
-    },
+    // badge: {
+    //   color: "danger",
+    //   text: 2,
+    // },
   },
   {
     _tag: "CSidebarNavItem",
@@ -61,7 +61,7 @@ const _nav = [
       {
         _tag: "CSidebarNavItem",
         name: "Mushroom Life Cycle",
-        to: "/base/breadcrumbs",
+        to: "/about/lifecycle",
       },
       {
         _tag: "CSidebarNavItem",

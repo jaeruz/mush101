@@ -1,27 +1,111 @@
 import {
   CAlert,
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
-  CLink,
-  CProgress,
+  CModal,
+  CModalHeader,
+  CModalBody,
+  CModalFooter,
   CRow,
 } from "@coreui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import firebase from "../../../api/fbConfig";
 
 function Notifications() {
-  const [visible, setVisible] = useState(10);
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+  const [notifState, setNotifState] = useState([]);
+  useEffect(() => {
+    const notifications = firebase.database().ref("notifications");
+
+    notifications.on("value", async (snapshot) => {
+      const tempSorted = snapshot
+        .val()
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+      setNotifState(tempSorted);
+      // console.log(snapshot.val()[0]);
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(notifState);
+  // }, [notifState]);
+
+  const handleClick = (index) => {
+    setModalContent(index);
+    setModal(true);
+    const notifications = firebase.database().ref("notifications");
+    notifications.child(index).update({ isChecked: true });
+  };
+
   return (
     <div>
+      <CModal
+        show={modal}
+        onClose={() => {
+          setModal(!modal);
+        }}
+        centered
+      >
+        {modalContent !== null && notifState.length ? (
+          <>
+            <CModalHeader>
+              <span style={{ color: "lightgray" }}>
+                {notifState[modalContent].date}
+              </span>
+            </CModalHeader>
+            <CModalBody>
+              <h4 style={{ textAlign: "center" }}>
+                {notifState[modalContent].message}
+              </h4>
+            </CModalBody>
+          </>
+        ) : (
+          <p>Loading..</p>
+        )}
+      </CModal>
       <CRow>
         <CCol lg={2}></CCol>
         <CCol lg={8}>
-          <CCard>
+          <CCard style={{ height: "80vh", overflowY: "hidden" }}>
             <CCardHeader>Notifications</CCardHeader>
             <CCardBody>
-              <CAlert color="primary">
+              {notifState.length
+                ? notifState.map((n, index) => {
+                    if (n.isChecked) {
+                      return (
+                        <CAlert
+                          color="light"
+                          onClick={() => handleClick(index)}
+                          style={{ cursor: "pointer" }}
+                          key={index}
+                        >
+                          <CRow>
+                            <CCol lg={6}>{n.date}</CCol>
+                            <CCol lg={6}>{n.type}</CCol>
+                          </CRow>
+                        </CAlert>
+                      );
+                    } else {
+                      return (
+                        <CAlert
+                          color="dark"
+                          onClick={() => handleClick(index)}
+                          style={{ cursor: "pointer" }}
+                          key={index}
+                        >
+                          <CRow>
+                            <CCol lg={6}>{n.date}</CCol>
+                            <CCol lg={6}>{n.type}</CCol>
+                          </CRow>
+                        </CAlert>
+                      );
+                    }
+                  })
+                : null}
+              {/* <CAlert color="primary">
                 This is a updated alert — check it out!
               </CAlert>
               <CAlert color="secondary">
@@ -40,7 +124,7 @@ function Notifications() {
               <CAlert color="light">
                 This is a light alert — check it out!
               </CAlert>
-              <CAlert color="dark">This is a dark alert — check it out!</CAlert>
+              <CAlert color="dark">This is a dark alert — check it out!</CAlert> */}
             </CCardBody>
           </CCard>
         </CCol>
