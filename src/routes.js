@@ -1,6 +1,11 @@
 import React from "react";
 // import LifeCycle from "./views/pages/about/LifeCycle";
 import Notifications from "./views/pages/notifications/Notifications";
+import LifeCycle from "./views/pages/about/LifeCycle";
+import Members from "./views/pages/about/Members";
+import Procedures from "./views/pages/about/Procedures";
+import Products from "./views/pages/about/Products";
+import Logs from "./views/pages/notifications/Logs";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -132,12 +137,31 @@ const routes = [
     name: "Notifications",
     component: Notifications,
   },
-  // {
-  //   path: "/about/lifecycle",
-  //   exact: true,
-  //   name: "Mushroom LifeCycle",
-  //   component: LifeCycle,
-  // },
+  {
+    path: "/logs",
+    exact: true,
+    name: "Logs",
+    component: Logs,
+  },
+  {
+    path: "/about/lifecycle",
+    exact: true,
+    name: "Lifecycle",
+    component: LifeCycle,
+  },
+  {
+    path: "/about/procedures",
+    exact: true,
+    name: "Procedures",
+    component: Procedures,
+  },
+  {
+    path: "/about/products",
+    exact: true,
+    name: "Products",
+    component: Products,
+  },
+  { path: "/about/members", exact: true, name: "Members", component: Members },
 ];
 
 export default routes;

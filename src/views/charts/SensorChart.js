@@ -50,7 +50,7 @@ function SensorChart({ modalState, sensorValuesList, labelsList }) {
                       drawOnChartArea: false,
                     },
                     ticks: {
-                      fontSize: 3,
+                      fontSize: 10,
                       fontColor: "grey",
                     },
                   },

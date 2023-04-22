@@ -40,8 +40,8 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Logs",
-    route: "/buttons",
+    name: "Parameters Log",
+    to: "/logs",
     icon: "cil-cursor",
   },
 
@@ -66,12 +66,17 @@ const _nav = [
       {
         _tag: "CSidebarNavItem",
         name: "Mushroom Procedures",
-        to: "/base/cards",
+        to: "/about/procedures",
       },
       {
         _tag: "CSidebarNavItem",
         name: "Mushroom Products",
-        to: "/base/cards",
+        to: "/about/products",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Members",
+        to: "/about/members",
       },
     ],
   },

@@ -89,7 +89,7 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
         backgroundColor: "transparent",
         borderColor: "#4dbd74",
         pointHoverBackgroundColor: "#4dbd74",
-        borderWidth: 1,
+        borderWidth: 2,
         borderDash: [8, 10],
         data: data1,
       },
@@ -99,7 +99,7 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
         backgroundColor: "transparent",
         borderColor: "#20a8d8",
         pointHoverBackgroundColor: "#20a8d8",
-        borderWidth: 1,
+        borderWidth: 2,
         borderDash: [8, 10],
         data: data2,
       },
@@ -109,7 +109,7 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
         backgroundColor: "transparent",
         borderColor: "#f79b0d",
         pointHoverBackgroundColor: "#f79b0d",
-        borderWidth: 1,
+        borderWidth: 3,
 
         data: data3,
       },
@@ -119,7 +119,7 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
         backgroundColor: "transparent",
         borderColor: "#f86c6b",
         pointHoverBackgroundColor: "#f86c6b",
-        borderWidth: 1,
+        borderWidth: 3,
         data: data4,
       },
     ];
@@ -137,7 +137,7 @@ const MainChartExample = ({ sensorValuesList, labelsList }) => {
             gridLines: {
               drawOnChartArea: false,
             },
-            ticks: { fontSize: 5 },
+            ticks: { fontSize: 10 },
           },
         ],
         yAxes: [

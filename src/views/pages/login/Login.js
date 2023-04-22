@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import mushlog from "../../../assets/icons/mushroomlog.png";
 
 import {
   CButton,
@@ -111,7 +111,12 @@ const Login = () => {
                       Prediction and Mushroom Monotub Control.
                     </p>
                     <p>{authDetails.UID !== null ? authDetails.UID : null}</p>
-                    <Link to="/register">
+                    <img
+                      src={mushlog}
+                      width="20%"
+                      style={{ marginTop: "1em" }}
+                    />
+                    {/* <Link to="/register">
                       <CButton
                         color="primary"
                         className="mt-3"
@@ -120,7 +125,7 @@ const Login = () => {
                       >
                         Register Now!
                       </CButton>
-                    </Link>
+                    </Link> */}
                   </div>
                 </CCardBody>
               </CCard>

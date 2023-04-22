@@ -1,28 +1,26 @@
 import React, { lazy, useEffect, useState } from "react";
 import {
-  CBadge,
   CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
-  CCardFooter,
   CCardHeader,
   CCol,
-  CProgress,
   CRow,
-  CCallout,
 } from "@coreui/react";
+import { useHistory } from "react-router-dom";
 
 import CIcon from "@coreui/icons-react";
 import firebase from "../../api/fbConfig";
 
 import MainChartExample from "../charts/MainChartExample.js";
 import BarML from "../charts/BarML";
+import moment from "moment";
 
 const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
 const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
 
 const Dashboard = () => {
+  const history = useHistory();
   const [sensorValuesList, setSensorValuesList] = useState([]);
   const [labelsList, setLabelsList] = useState([]);
   useEffect(() => {
@@ -33,12 +31,19 @@ const Dashboard = () => {
       const labels = [];
       Object.keys(ser).map((key, index) => {
         temp.push(ser[key]);
-        labels.push(key);
+        let d = new Date(0);
+        let epochDate = moment(d.setUTCSeconds(parseInt(key))).format("LT");
+        labels.push(epochDate);
       });
+
       setLabelsList(labels);
       setSensorValuesList(temp);
     });
   }, []);
+
+  const handleClickCloud = (e) => {
+    history.push("/logs");
+  };
 
   useEffect(() => {
     // console.log(sensorValuesList);
@@ -60,10 +65,14 @@ const Dashboard = () => {
               <h4 id="traffic" className="card-title mb-0">
                 Mushroom Cycle Monitoring
               </h4>
-              <div className="small text-muted">November 2017</div>
+              <div className="small text-muted">{moment().format("LL")}</div>
             </CCol>
             <CCol sm="7" className="d-none d-md-block">
-              <CButton color="primary" className="float-right">
+              <CButton
+                color="primary"
+                className="float-right"
+                onClick={handleClickCloud}
+              >
                 <CIcon name="cil-cloud-download" />
               </CButton>
             </CCol>
@@ -79,7 +88,7 @@ const Dashboard = () => {
           <h4 id="traffic" className="card-title mb-0">
             Prediction Status
           </h4>
-          <div className="small text-muted">November 2017</div>
+          <div className="small text-muted">{moment().format("LL")}</div>
         </CCardHeader>
         <CCardBody>
           <BarML />

@@ -12,7 +12,7 @@ import {
   CSidebarNavItem,
 } from "@coreui/react";
 
-import CIcon from "@coreui/icons-react";
+import mushlog from "../assets/icons/mushroomlog.png";
 
 // sidebar nav config
 import navigation from "./_nav";
@@ -27,8 +27,9 @@ const TheSidebar = () => {
   return (
     <CSidebar show={show} onShowChange={(val) => dispatch(updateSidebar(val))}>
       <CSidebarBrand className="d-md-down-none" to="/">
-        <h4 className="c-sidebar-brand-full">KabuTech V2.1.1.2</h4>
-        <h4 className="c-sidebar-brand-minimized">K</h4>
+        <h4 className="c-sidebar-brand-full">KabuTech</h4>
+
+        <img className="c-sidebar-brand-minimized" src={mushlog} width="70%" />
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement

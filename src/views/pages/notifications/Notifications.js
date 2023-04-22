@@ -21,10 +21,13 @@ function Notifications() {
     const notifications = firebase.database().ref("notifications");
 
     notifications.on("value", async (snapshot) => {
-      const tempSorted = snapshot
-        .val()
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
-      setNotifState(tempSorted);
+      console.log("anslklkabslgalshl", snapshot.val());
+      if (snapshot.val().length) {
+        const tempSorted = snapshot.val().sort((a, b) => b.id - a.id);
+
+        setNotifState(tempSorted);
+      }
+
       // console.log(snapshot.val()[0]);
     });
   }, []);
@@ -37,7 +40,11 @@ function Notifications() {
     setModalContent(index);
     setModal(true);
     const notifications = firebase.database().ref("notifications");
-    notifications.child(index).update({ isChecked: true });
+    notifications
+      .child(notifState.length - index - 1)
+      .update({ isChecked: true });
+    console.log(index);
+    console.log(notifState.length - index - 2);
   };
 
   return (

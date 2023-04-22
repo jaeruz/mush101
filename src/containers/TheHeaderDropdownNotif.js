@@ -73,7 +73,7 @@ const TheHeaderDropdownNotif = () => {
           </CDropdownItem>
         )}
 
-        <CDropdownItem header tag="div" color="light">
+        {/* <CDropdownItem header tag="div" color="light">
           <strong>Mushroom Cycle</strong>
         </CDropdownItem>
         <CDropdownItem className="d-block">
@@ -82,9 +82,9 @@ const TheHeaderDropdownNotif = () => {
               <b>Cycle #1252</b>
             </small>
           </div>
-          <CProgress size="xs" color="info" value={75} />
-          <small className="text-muted">75% before Harvest</small>
-        </CDropdownItem>
+          <CProgress size="xs" color="info" value={5} />
+          <small className="text-muted">5% before Harvest</small>
+        </CDropdownItem> */}
       </CDropdownMenu>
     </CDropdown>
   );
